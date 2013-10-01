@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Root>
+	<Operation Action="部屋の真ん中で椅子に登る">
+		<Condition>
+			<PreCondition>
+				<Positive>椅子は部屋の真ん中にある</Positive>
+				<Positive>部屋の真ん中にいる</Positive>
+				<Positive>床の上にいる</Positive>
+			</PreCondition>
+			<PostCondition>
+				<Add>バナナのそばにいる</Add>
+				<Add>椅子の上にいる</Add>
+				<Del>床の上にいる</Del>
+			</PostCondition>
+		</Condition>
+	</Operation>
+	<Operation Action="部屋の真ん中で椅子から降りる">
+		<Condition>
+			<PreCondition>
+				<Positive>椅子は部屋の真ん中にある</Positive>
+				<Positive>部屋の真ん中にいる</Positive>
+				<Positive>椅子の上にいる</Positive>
+			</PreCondition>
+			<PostCondition>
+				<Add>床の上にいる</Add>
+				<Del>バナナのそばにいる</Del>
+				<Del>椅子の上にいる</Del>
+			</PostCondition>
+		</Condition>
+	</Operation>
+	<Operation Action="ドアのそばで椅子に登る">
+		<Condition>
+			<PreCondition>
+				<Positive>椅子はドアのそばにある</Positive>
+				<Positive>ドアのそばにいる</Positive>
+				<Positive>床の上にいる</Positive>
+			</PreCondition>
+			<PostCondition>
+				<Add>椅子の上にいる</Add>
+				<Del>床の上にいる</Del>
+			</PostCondition>
+		</Condition>
+	</Operation>
+	<Operation Action="ドアのそばで椅子から降りる">
+		<Condition>
+			<PreCondition>
+				<Positive>椅子はドアのそばにある</Positive>
+				<Positive>ドアのそばにいる</Positive>
+				<Positive>椅子の上にいる</Positive>
+			</PreCondition>
+			<PostCondition>
+				<Add>床の上にいる</Add>
+				<Del>椅子の上にいる</Del>
+			</PostCondition>
+		</Condition>
+	</Operation>
+
+	<Operation Action="ドアのそばから部屋の真ん中に椅子を押す">
+		<Condition>
+			<PreCondition>
+				<Positive>椅子はドアのそばにある</Positive>
+				<Positive>ドアのそばにいる</Positive>
+			</PreCondition>
+			<PostCondition>
+				<Add>椅子は部屋の真ん中にある</Add>
+				<Add>部屋の真ん中にいる</Add>
+				<Del>椅子はドアのそばにある</Del>
+				<Del>ドアのそばにいる</Del>
+			</PostCondition>
+		</Condition>
+	</Operation>
+	<Operation Action="ドアのそばから部屋の真ん中まで歩く">
+		<Condition>
+			<PreCondition>
+				<Positive>ドアのそばにいる</Positive>
+				<Positive>床の上にいる</Positive>
+			</PreCondition>
+			<PostCondition>
+				<Add>部屋の真ん中にいる</Add>
+				<Del>ドアのそばにいる</Del>
+			</PostCondition>
+		</Condition>
+	</Operation>
+	<Operation Action="部屋の真ん中からドアまで歩く">
+		<Condition>
+			<PreCondition>
+				<Positive>部屋の真ん中にいる</Positive>
+				<Positive>床の上にいる</Positive>
+			</PreCondition>
+			<PostCondition>
+				<Add>ドアのそばにいる</Add>
+				<Del>部屋の真ん中にいる</Del>
+			</PostCondition>
+		</Condition>
+	</Operation>
+	<Operation Action="バナナをつかむ">
+		<Condition>
+			<PreCondition>
+				<Positive>バナナのそばにいる</Positive>
+				<Positive>何も持っていない</Positive>
+			</PreCondition>
+			<PostCondition>
+				<Add>バナナを持っている</Add>
+				<Del>何も持っていない</Del>
+			</PostCondition>
+		</Condition>
+	</Operation>
+	<Operation Action="バナナをはなす">
+		<Condition>
+			<PreCondition>
+				<Positive>バナナのそばにいる</Positive>
+				<Positive>バナナを持っている</Positive>
+			</PreCondition>
+			<PostCondition>
+				<Add>何も持っていない</Add>
+				<Del>バナナを持っている</Del>
+			</PostCondition>
+		</Condition>
+	</Operation>
+	<Operation Action="ボールを落とす">
+		<Condition>
+			<PreCondition>
+				<Positive>ボールを持っている</Positive>
+			</PreCondition>
+			<PostCondition>
+				<Add>何も持っていない</Add>
+				<Del>ボールを持っている</Del>
+			</PostCondition>
+		</Condition>
+	</Operation>
+	<Operation Action="バナナを食べる">
+		<Condition>
+			<PreCondition>
+				<Positive>バナナを持っている</Positive>
+				<Positive>おなかが空いている</Positive>
+			</PreCondition>
+			<PostCondition>
+				<Add>何も持っていない</Add>
+				<Add>おなかが空いていない</Add>
+				<Del>バナナを持っている</Del>
+				<Del>おなかが空いている</Del>
+			</PostCondition>
+		</Condition>
+	</Operation>
+	<InitialCondition>ドアのそばにいる</InitialCondition>
+	<InitialCondition>床の上にいる</InitialCondition>
+	<InitialCondition>ボールを持っている</InitialCondition>
+	<InitialCondition>おなかが空いている</InitialCondition>
+	<InitialCondition>椅子はドアのそばにある</InitialCondition>
+	<FinalCondition>おなかが空いていない</FinalCondition>
+</Root>
+
