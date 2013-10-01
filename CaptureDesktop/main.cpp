@@ -64,6 +64,7 @@ void InitDialog(HWND hDlg)
 	SendMessage(Combo, CB_INSERTSTRING, 0, (LPARAM)"gif");
 	SendMessage(Combo, CB_INSERTSTRING, 1, (LPARAM)"jpg");
 	SendMessage(Combo, CB_INSERTSTRING, 2, (LPARAM)"bmp");
+	SendMessage(Combo, CB_INSERTSTRING, 3, (LPARAM)"png");
 	SendMessage(Combo, CB_SETCURSEL, (WPARAM)0, 0);
 
 	//‘S‰æ–Ê‚Ì”ÍˆÍ‚ðŽæ“¾
