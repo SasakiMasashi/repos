@@ -1,0 +1,113 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 日本語 resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+#pragma code_page(932)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CAPTUREDESKTOP DIALOGEX 0, 0, 187, 145
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Capture Desktop"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Capture",IDC_CAPTURE,31,124,50,14
+    PUSHBUTTON      "キャンセル",IDCANCEL,100,124,50,14
+    LTEXT           "出力フォルダ",IDC_STATIC,7,9,42,10
+    EDITTEXT        IDC_OUTPUTFOLDER,58,7,122,14,ES_AUTOHSCROLL
+    LTEXT           "出力ファイル名",IDC_STATIC,7,28,48,8
+    EDITTEXT        IDC_OUTPUTFILENAME,58,25,122,14,ES_AUTOHSCROLL
+    GROUPBOX        "Capture 範囲",IDC_STATIC,7,60,173,59
+    COMBOBOX        IDC_FORMAT,132,44,48,48,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "画像フォーマットタイプ",IDC_STATIC,7,46,76,8
+    LTEXT           "最小X",IDC_STATIC,20,75,21,8
+    EDITTEXT        IDC_MIN_X,42,71,38,14,ES_AUTOHSCROLL
+    LTEXT           "最小Y",IDC_STATIC,93,75,21,8
+    EDITTEXT        IDC_MIN_Y,121,71,36,14,ES_AUTOHSCROLL
+    LTEXT           "最大X",IDC_STATIC,20,90,21,8
+    EDITTEXT        IDC_MAX_X,42,87,38,14,ES_AUTOHSCROLL
+    LTEXT           "最大Y",IDC_STATIC,93,90,21,8
+    EDITTEXT        IDC_MAX_Y,121,87,36,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "スクリーンサイズを取得",IDC_SCREENSIZE,16,103,79,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_CAPTUREDESKTOP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 138
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // 日本語 resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
