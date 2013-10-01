@@ -1,8 +1,8 @@
-(function(){
+$(document).ready(function(){
 
 Ext.Loader.setPath({
-    'Ext.ux': 'ux',
-    'Ext.app': 'portal/classes'
+    'Ext.ux': 'ux/',
+    'Ext.app': 'portal/classes/'
 });
 
 Ext.require([
@@ -179,4 +179,4 @@ Ext.onReady(function () {
 });
 
 
-})()
+});
