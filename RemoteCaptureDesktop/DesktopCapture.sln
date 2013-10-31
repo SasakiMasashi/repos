@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopCapture", "DesktopCapture\DesktopCapture.csproj", "{84D6B321-CD52-42A9-9445-524B5470E38E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "server", "server\server.csproj", "{C8D8F600-FA8F-4E32-84E1-280B68C9036C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{84D6B321-CD52-42A9-9445-524B5470E38E}.Debug|x86.ActiveCfg = Debug|x86
+		{84D6B321-CD52-42A9-9445-524B5470E38E}.Debug|x86.Build.0 = Debug|x86
+		{84D6B321-CD52-42A9-9445-524B5470E38E}.Release|x86.ActiveCfg = Release|x86
+		{84D6B321-CD52-42A9-9445-524B5470E38E}.Release|x86.Build.0 = Release|x86
+		{C8D8F600-FA8F-4E32-84E1-280B68C9036C}.Debug|x86.ActiveCfg = Debug|x86
+		{C8D8F600-FA8F-4E32-84E1-280B68C9036C}.Debug|x86.Build.0 = Debug|x86
+		{C8D8F600-FA8F-4E32-84E1-280B68C9036C}.Release|x86.ActiveCfg = Release|x86
+		{C8D8F600-FA8F-4E32-84E1-280B68C9036C}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
