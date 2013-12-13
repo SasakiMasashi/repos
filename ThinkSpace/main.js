@@ -15,11 +15,18 @@ var gRightCanvas = {
 	_imageViewIndex: 0,
 	_spreadSheetIndex: 0,
 	_maxZIndex: 5,
-	tmpItemId: "",
-	tmpItemDiffX: 0,
-	tmpItemDiffY: 0,
-	imageViewMoveState: false,
 	
+	tmp: {
+		id: "",
+		diffX: 0,
+		diffY: 0,
+		rect: null,
+		//startLeft: 0,
+		//startTop: 0,
+		moveMode: false,
+		boundaryMode: false,
+	},
+
 	getNextCircleIndex: function(){
 		++this._circleIndex;
 		return this._circleIndex;
@@ -298,10 +305,10 @@ var Initializer = function(){
 									e.preventDefault();
 								})
 								.bind("drop", function(e){
-									var id = gRightCanvas.tmpItemId;
+									var id = gRightCanvas.tmp.id;
 									var target = $("#" + id);
-									target.css("left", (e.originalEvent.clientX - gRightCanvas.tmpItemDiffX) + "px")
-										  .css("top", (e.originalEvent.clientY - gRightCanvas.tmpItemDiffY) + "px")
+									target.css("left", (e.originalEvent.clientX - gRightCanvas.tmp.diffX) + "px")
+										  .css("top", (e.originalEvent.clientY - gRightCanvas.tmp.diffY) + "px")
 										  .css("z-index", gRightCanvas.getNextZIndex());
 									if(id.indexOf(myId.sub.circleCanvasDiv) != -1){
 										NodeUtil.updateArrows(target);	
@@ -309,12 +316,19 @@ var Initializer = function(){
 									e.preventDefault();
 								})
 								.bind("mousemove", function(e){
-									if(gRightCanvas.imageViewMoveState){
-										var id = gRightCanvas.tmpItemId;
+									if(gRightCanvas.tmp.moveMode){
+										var id = gRightCanvas.tmp.id;
 										var target = $("#" + id);
-										target.css("left", (e.originalEvent.clientX - gRightCanvas.tmpItemDiffX) + "px")
-										  	  .css("top", (e.originalEvent.clientY - gRightCanvas.tmpItemDiffY) + "px");
+										target.css("left", (e.originalEvent.clientX - gRightCanvas.tmp.diffX) + "px")
+										  	  .css("top", (e.originalEvent.clientY - gRightCanvas.tmp.diffY) + "px");
+									} else if(gRightCanvas.tmp.boundaryMode){
+										var width = ComponentCreator.getNextWidth(e.originalEvent.clientX);
+										$("#" + gRightCanvas.tmp.id).attr({width: width});
 									}
+								})
+								.bind("mouseup", function(e){
+									gRightCanvas.tmp.moveMode = false;
+									gRightCanvas.tmp.boundaryMode = false;
 								});
 			var canvasRight = $("<canvas>", {"id": myId.rightRangeCanvas})
 								.css("float", "right")
@@ -546,10 +560,10 @@ var ComponentCreator = {
 	},
 	
 	onDragStartCommon: function(e){
-		gRightCanvas.tmpItemId = e.target.id;
+		gRightCanvas.tmp.id = e.target.id;
 		var rect = e.target.getBoundingClientRect();
-		gRightCanvas.tmpItemDiffX = e.originalEvent.clientX - rect.left;
-		gRightCanvas.tmpItemDiffY = e.originalEvent.clientY - rect.top;
+		gRightCanvas.tmp.diffX = e.originalEvent.clientX - rect.left;
+		gRightCanvas.tmp.diffY = e.originalEvent.clientY - rect.top;
 	},
 	
 	isRectBoundary: function(rect, clientX, clientY, boundaryWidth){		
@@ -565,28 +579,46 @@ var ComponentCreator = {
 		
 		// boundaryをクリックした場合はサイズを変更
 		if(ComponentCreator.isRectBoundary(rect, e.originalEvent.clientX, e.originalEvent.clientY, 5)){
-			
+			gRightCanvas.tmp.rect = rect;
+			gRightCanvas.tmp.diffX = e.originalEvent.clientX - rect.left;
+			gRightCanvas.tmp.diffY = e.originalEvent.clientY - rect.top;
+			gRightCanvas.tmp.boundaryMode = true;
+			gRightCanvas.tmp.moveMode = false;
+			gRightCanvas.tmp.id = e.target.id;
 		// 内部をクリックした場合は移動する
-		} else {
-			gRightCanvas.tmpItemDiffX = e.originalEvent.clientX - rect.left;
-			gRightCanvas.tmpItemDiffY = e.originalEvent.clientY - rect.top;
+		} else if(gRightCanvas.tmp.boundaryMode == false){
+			gRightCanvas.tmp.diffX = e.originalEvent.clientX - rect.left;
+			gRightCanvas.tmp.diffY = e.originalEvent.clientY - rect.top;
 			$(elem).css("z-index", gRightCanvas.getNextZIndex());
-			gRightCanvas.imageViewMoveState = true;
-			gRightCanvas.tmpItemId = elem.id;
+			gRightCanvas.tmp.moveMode = true;
+			gRightCanvas.tmp.boundaryMode = false;
+			gRightCanvas.tmp.id = elem.id;
 		}
 	},
 	
 	imageOnMouseUp: function(e){
-		gRightCanvas.imageViewMoveState = false;
+		gRightCanvas.tmp.moveMode = false;
+		gRightCanvas.tmp.boudnaryMode = false;
 	},
+	
+	getNextWidth: function(clickX){
+		var virtualLeft = clickX - gRightCanvas.tmp.diffX;
+		var plusWidth = virtualLeft - gRightCanvas.tmp.rect.left;
+		var width = gRightCanvas.tmp.rect.right - gRightCanvas.tmp.rect.left + plusWidth;
+		return width;
+	},	
 	
 	imageOnMouseMove: function(e){
 		var isLButtonDown = (window.event.which == 1) ? true : false;
-		if(gRightCanvas.imageViewMoveState && isLButtonDown){
-			$("#" + gRightCanvas.tmpItemId).css("left", (e.originalEvent.clientX - gRightCanvas.tmpItemDiffX) + "px")
-			   	   .css("top", (e.originalEvent.clientY - gRightCanvas.tmpItemDiffY) + "px");								       
-		}else{
-			gRightCanvas.imageViewMoveState = false;
+		if(gRightCanvas.tmp.moveMode && isLButtonDown){
+			$("#" + gRightCanvas.tmp.id).css("left", (e.originalEvent.clientX - gRightCanvas.tmp.diffX) + "px")
+			   	   						.css("top", (e.originalEvent.clientY - gRightCanvas.tmp.diffY) + "px");								       
+		} else if(gRightCanvas.tmp.boundaryMode && isLButtonDown){
+			var width = ComponentCreator.getNextWidth(e.originalEvent.clientX);
+			$("#" + gRightCanvas.tmp.id).attr({width: width});
+		} else {
+			gRightCanvas.tmp.moveMode = false;
+			gRightCanvas.tmp.boudnaryMode = false;
 		}
 	},
 	
